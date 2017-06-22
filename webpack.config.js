@@ -54,7 +54,7 @@ module.exports = {
         }),
         new SpritesmithPlugin({
             src: {
-                cwd: path.resolve(PATHS.source, 'pages/assets/ico'),
+                cwd: path.resolve(PATHS.source, 'pages/assets/sprite-png'),
                 glob: '*.png'
             },
             target: {
