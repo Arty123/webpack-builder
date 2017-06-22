@@ -40,6 +40,8 @@ node_modules
 npm-debug.log
 
 # Dynamic sprite files
-/source/pages/sprite.css
-/source/pages/sprite.png
+source/pages/assets/dynamic-sprites/sprite-png.css
+source/pages/assets/dynamic-sprites/sprite-png.png
+source/pages/assets/dynamic-sprites/sprite-gif.css
+source/pages/assets/dynamic-sprites/sprite-gif.png
 

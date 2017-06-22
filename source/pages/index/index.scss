@@ -1,4 +1,5 @@
-@import '../sprite.css';
+@import '../assets/dynamic-sprites/sprite-png.css';
+@import '../assets/dynamic-sprites/sprite-gif.css';
 
 @font-face {
   font-family: "TestFont";
@@ -16,4 +17,6 @@ h1{
 
 .icon {
   margin: 10px;
+  display: inline-block;
+  vertical-align: top;
 }
