@@ -58,11 +58,11 @@ module.exports = {
                 glob: '*.png'
             },
             target: {
-                image: path.resolve(PATHS.build, 'images/sprite.png'),
-                css: path.resolve(PATHS.build, 'css/sprite.css')
+                image: path.resolve(PATHS.source, 'pages/sprite.png'),
+                css: path.resolve(PATHS.source, 'pages/sprite.css')
             },
             apiOptions: {
-                cssImageRef: "../images/sprite.png"
+                cssImageRef: "sprite.png"
             }
         }),
         new UglifyJSPlugin()
@@ -117,7 +117,7 @@ module.exports = {
             {
                 test: /\.png$/,
                 loaders: [
-                    'file-loader?name=i/[hash].[ext]'
+                    'file-loader?name=sprites/[hash].[ext]'
                 ]
             },
             {
