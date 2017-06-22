@@ -29,7 +29,8 @@
     "uglify-js": "git://github.com/mishoo/UglifyJS2.git#harmony-v2.8.22",
     "uglifyjs-webpack-plugin": "^0.4.3",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "webpack-spritesmith": "^0.3.3"
   },
   "dependencies": {
     "jquery": "^3.2.1",

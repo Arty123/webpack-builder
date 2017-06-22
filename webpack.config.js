@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const SpritesmithPlugin = require('webpack-spritesmith');
 
 const PATHS = {
     source: path.join(__dirname, 'source'),
@@ -20,6 +21,10 @@ module.exports = {
     output: {
         path: PATHS.build,
         filename: './js/[name].js'
+    },
+    resolve: {
+        //webpack 2:
+        modules: ["node_modules", "spritesmith-generated"]
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -46,6 +51,19 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
+        }),
+        new SpritesmithPlugin({
+            src: {
+                cwd: path.resolve(PATHS.source, 'pages/assets/ico'),
+                glob: '*.png'
+            },
+            target: {
+                image: path.resolve(PATHS.build, 'images/sprite.png'),
+                css: path.resolve(PATHS.build, 'css/sprite.css')
+            },
+            apiOptions: {
+                cssImageRef: "../images/sprite.png"
+            }
         }),
         new UglifyJSPlugin()
     ],
@@ -82,12 +100,33 @@ module.exports = {
                 }
             },
             {
-                test: /\.(jpg|png|svg)$/,
+                test: /\.(jpg|svg)$/,
                 loader: 'file-loader',
                 options: {
                     name: 'images/[name].[ext]'
                 }
             },
+            {
+                test: /\.styl$/,
+                loader: [
+                    'style-loader',
+                    'css-loader',
+                    'stylus-loader'
+                ]
+            },
+            {
+                test: /\.png$/,
+                loaders: [
+                    'file-loader?name=i/[hash].[ext]'
+                ]
+            },
+            {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                loader: 'file-loader',
+                options: {
+                    name: 'fonts/[name].[ext]'
+                }
+            }
         ]
     }
 };
