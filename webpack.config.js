@@ -54,28 +54,15 @@ module.exports = {
         }),
         new SpritesmithPlugin({
             src: {
-                cwd: path.resolve(PATHS.source, 'pages/assets/sprite-png'),
-                glob: '*.png'
+                cwd: path.resolve(PATHS.source, 'pages/assets/images/sprite-png'),
+                glob: '*-sprite.png'
             },
             target: {
-                image: path.resolve(PATHS.source, 'pages/sprite-png.png'),
-                css: path.resolve(PATHS.source, 'pages/sprite-png.css')
+                image: path.resolve(PATHS.source, 'pages/assets/dynamic-sprites/sprite-png.sprite.png'),
+                css: path.resolve(PATHS.source, 'pages/assets/dynamic-sprites/sprite-png.css')
             },
             apiOptions: {
-                cssImageRef: "sprite-png.png"
-            }
-        }),
-        new SpritesmithPlugin({
-            src: {
-                cwd: path.resolve(PATHS.source, 'pages/assets/sprite-gif'),
-                glob: '*.gif'
-            },
-            target: {
-                image: path.resolve(PATHS.source, 'pages/sprite-gif.png'),
-                css: path.resolve(PATHS.source, 'pages/sprite-gif.css')
-            },
-            apiOptions: {
-                cssImageRef: "sprite-gif.png"
+                cssImageRef: "sprite-png.sprite.png"
             }
         }),
         new UglifyJSPlugin()
@@ -113,8 +100,9 @@ module.exports = {
                 }
             },
             {
-                test: /\.(jpg|svg)$/,
+                test: /\.(jpe?g|png|svg|gif)$/,
                 loader: 'file-loader',
+                exclude: /\.sprite.png$/,
                 options: {
                     name: 'images/[name].[ext]'
                 }
@@ -128,7 +116,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.png$/,
+                test: /\.sprite.png$/,
                 loaders: [
                     'file-loader?name=sprites/[hash].[ext]'
                 ]
